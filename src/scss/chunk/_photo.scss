@@ -1,0 +1,40 @@
+.news {
+  &__inner-photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 15px;
+  }
+
+  &__image {
+    margin-bottom: 10px;
+    width: 250px;
+    height: auto;
+  }
+
+  &__date {
+    margin-bottom: 10px;
+  }
+
+  &__link {
+    font-size: 18px;
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: "";
+      width: 100%;
+      border-top: 2px solid $white;
+      bottom: -2px;
+      left: 0;
+      transition: all 0.4s;
+    }
+
+    &:hover {
+      &::after {
+        left: 50%;
+        width: 0;
+      }
+    }
+  }
+}
