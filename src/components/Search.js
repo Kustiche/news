@@ -7,7 +7,6 @@ export default function Search(props) {
   const onChangeInputType = props.onChangeInputType;
   const onChangeType = props.onChangeType;
   const valueType = props.valueType;
-  console.log(valueType);
 
   const searchTypes = ["title", "description", "content"];
 

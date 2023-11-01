@@ -1,7 +1,9 @@
 import { Box } from "@mui/material";
 import Search from "./Search";
 import Blocks from "./Blocks";
+import SeparateNews from "./SeparateNews";
 import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 
 export default function Main() {
   const [searchInformation, setSearchInformation] = useState(
@@ -30,8 +32,8 @@ export default function Main() {
     setSearchType(value);
   }
 
-  function changeSearchInputType(e) {
-    setSearchType(e.target.textContent);
+  function changeSearchInputType(event, value) {
+    setSearchType(value);
   }
 
   function searchNews(e) {
@@ -57,18 +59,28 @@ export default function Main() {
     <Box component={"section"} className="news">
       <Box component={"div"} className="container">
         <Box component={"div"} className="news__wrap">
-          <Box component={"h1"} className="news__title">
-            News
-          </Box>
-          <Search
-            value={searchInformation}
-            onChange={changeSearchInformation}
-            onSubmit={searchNews}
-            onChangeInputType={changeSearchInputType}
-            onChangeType={changeSearchType}
-            valueType={searchType}
-          />
-          <Blocks news={news} />
+          <Routes>
+            <Route
+              path="*"
+              element={
+                <>
+                  <Box component={"h1"} className="news__title">
+                    News
+                  </Box>
+                  <Search
+                    value={searchInformation}
+                    onChange={changeSearchInformation}
+                    onSubmit={searchNews}
+                    onChangeInputType={changeSearchInputType}
+                    onChangeType={changeSearchType}
+                    valueType={searchType}
+                  />
+                  <Blocks news={news} />
+                </>
+              }
+            />
+            <Route path="/eparate-news" element={<SeparateNews news={news} />} />
+          </Routes>
         </Box>
       </Box>
     </Box>
