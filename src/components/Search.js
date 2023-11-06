@@ -1,4 +1,5 @@
 import { Autocomplete, Box, Button, TextField } from "@mui/material";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Search(props) {
   const value = props.value;
@@ -7,14 +8,15 @@ export default function Search(props) {
   const onChangeInputType = props.onChangeInputType;
   const onChangeType = props.onChangeType;
   const valueType = props.valueType;
+  const location = useLocation();
 
-  const searchTypes = ["title", "description", "content"];
+  const searchTypes = location.pathname === "/" ? ["title", "description", "content"] : ["title", "content"];
 
   return (
     <Box component={"form"} className="news__inner" action="#/" method="post" onSubmit={onSubmit}>
       <Autocomplete
         className="news__select"
-        value={valueType}
+        value={valueType === "" ? "title" : valueType}
         inputValue={valueType}
         options={searchTypes}
         onInputChange={onChangeInputType}
@@ -56,6 +58,9 @@ export default function Search(props) {
       >
         Send
       </Button>
+      <Link className="news__featured-button" to={location.pathname === "/" ? "/featured-news" : "../"}>
+        {location.pathname === "/" ? "Featured news" : "All news"}
+      </Link>
     </Box>
   );
 }

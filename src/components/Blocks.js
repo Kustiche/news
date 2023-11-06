@@ -4,13 +4,13 @@ import Content from "./Content";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-export default function Blocks({ news }) {
+export default function Blocks({ news, onClick }) {
   const [paginationNum, setpaginationNum] = useState(JSON.parse(localStorage.getItem("paginationNum")) ?? 1);
   const location = useLocation();
 
   useEffect(() => {
     localStorage.setItem("paginationNum", JSON.stringify(paginationNum));
-  });
+  }, [paginationNum]);
 
   let listItems = [];
 
@@ -21,11 +21,12 @@ export default function Blocks({ news }) {
   if (news[0] !== undefined) {
     listItems = news.map((item) => {
       return (
-        <Box key={item.publishedAt} component={"div"} className="news__block">
+        <Box key={item.url} component={"div"} className="news__block" data-id={item.url}>
           <NewsInformation
             urlImage={item.urlToImage}
             date={item.publishedAt.slice(0, 10) + " " + item.publishedAt.slice(11, 19)}
             link={item.url}
+            onClick={onClick}
           />
           <Content
             title={item.title.length > 40 ? item.title.slice(0, 40) + "..." : item.title}

@@ -79,7 +79,7 @@ code {
   align-items: center;
   margin-bottom: 40px;
   width: 100%;
-  max-width: 1050px;
+  max-width: 1250px;
 }
 .news__select {
   width: 180px;
@@ -87,12 +87,21 @@ code {
 .news__search {
   width: 730px;
 }
+.news__featured-button {
+  padding: 10px 20px;
+  text-decoration: none;
+  color: white;
+  border: 2px solid white;
+}
 
 .news__blocks {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: 100%;
+  max-height: 75vh;
+  overflow-y: auto;
 }
 .news__block {
   display: flex;
@@ -131,6 +140,7 @@ code {
   margin-bottom: 10px;
 }
 .news__link {
+  margin-bottom: 5px;
   font-size: 18px;
   position: relative;
 }
@@ -146,6 +156,9 @@ code {
 .news__link:hover::after {
   left: 50%;
   width: 0;
+}
+.news__link:last-child {
+  margin-bottom: 0;
 }
 
 .news__content {

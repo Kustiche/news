@@ -17,6 +17,7 @@
   }
 
   &__link {
+    margin-bottom: 5px;
     font-size: 18px;
     position: relative;
 
@@ -35,6 +36,10 @@
         left: 50%;
         width: 0;
       }
+    }
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }
